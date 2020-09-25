@@ -18,7 +18,15 @@ const favoriteBlog=(blogs) => {
     return cur.likes > acc.likes ? cur : acc
   }
 
-  return blogs.length > 0 ? blogs.reduce(reducer, blogs[0]) : null
+  if(blogs.length === 0) return null
+
+  const result = blogs.reduce(reducer, blogs[0])
+
+  delete result._id
+  delete result.__v
+  delete result.url
+
+  return result
 }
 
 const mostBlogs=(blogs) => {
