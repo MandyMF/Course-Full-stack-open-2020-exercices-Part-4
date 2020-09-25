@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MandyMF/Course-Full-stack-open-2020-exercices-Part-3.git"
+    "url": "git+https://github.com/MandyMF/Course-Full-stack-open-2020-exercices-Part-4.git"
   },
   "author": "Mandy Martinez Fernandez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MandyMF/Course-Full-stack-open-2020-exercices-Part-3/issues"
+    "url": "https://github.com/MandyMF/Course-Full-stack-open-2020-exercices-Part-4/issues"
   },
-  "homepage": "https://github.com/MandyMF/Course-Full-stack-open-2020-exercices-Part-3#readme",
+  "homepage": "https://github.com/MandyMF/Course-Full-stack-open-2020-exercices-Part-4#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
