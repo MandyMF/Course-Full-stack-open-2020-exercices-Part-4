@@ -42,7 +42,7 @@ test('should add a blog after a post request',async () => {
     title: 'title 5',
     author: 'author 5',
     url: 'url 5',
-    likes: 5
+    likes: 5,
   }
 
   await api.post('/api/blogs')
@@ -60,6 +60,25 @@ test('should add a blog after a post request',async () => {
 
 })
 
+test('on post if likes property is missing should default to 0', async () => {
+  const blog ={
+    title: 'title cerotest',
+    author: 'author cerotest',
+    url: 'url cerotest',
+  }
+
+  const resp_from_db = await api.post('/api/blogs')
+    .send(blog)
+
+  expect(resp_from_db.body.likes).toEqual(0)
+
+  const blogs = await helper.blogsInDb()
+  expect( blogs.find(blog => {
+    return blog.id === resp_from_db.body.id
+  }
+  ).likes
+  ).toEqual(0)
+})
 
 
 afterAll(() => {
