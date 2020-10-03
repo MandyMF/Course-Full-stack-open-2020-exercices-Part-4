@@ -90,6 +90,19 @@ test('should return error 400 on if title and url are missing', async () => {
     .expect(400)
 })
 
+test('delete should work', async () => {
+  const initialBlogs = await helper.blogsInDb()
+
+  await api.delete(`/api/blogs/${initialBlogs[0].id}`)
+    .expect(204)
+
+  const afterDeleteBlogs = await helper.blogsInDb()
+
+  expect(afterDeleteBlogs).toHaveLength(initialBlogs.length - 1)
+  const res = await Blog.findById(initialBlogs[0].id)
+  expect(res).toEqual(null)
+})
+
 
 afterAll(() => {
   mongoose.connection.close()
