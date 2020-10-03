@@ -107,6 +107,21 @@ describe('delete request tests', () => {
   })
 })
 
+describe('update request tests', () => {
+  test('update request tests', async () => {
+    const initialBlogs = await helper.blogsInDb()
+
+    const resp_from_db = await api.put(`/api/blogs/${initialBlogs[0].id}`)
+      .send({ likes: 777 })
+      .expect(200)
+
+    expect(resp_from_db.body.likes).toEqual(777)
+
+    const updated_blog_0_in_db = await Blog.findById(initialBlogs[0].id)
+    expect(updated_blog_0_in_db.likes).toEqual(777)
+  })
+
+})
 afterAll(() => {
   mongoose.connection.close()
 })
