@@ -37,6 +37,30 @@ test('Blog post identifier property is named id and exist for every blog', async
   })
 })
 
+test('should add a blog after a post request',async () => {
+  const blog ={
+    title: 'title 5',
+    author: 'author 5',
+    url: 'url 5',
+    likes: 5
+  }
+
+  await api.post('/api/blogs')
+    .send(blog)
+    .expect(201)
+  const blogList = await helper.blogsInDb()
+
+  expect(blogList).toHaveLength(helper.initialBlogs.length + 1)
+
+  const pure_blogs = blogList.map(i_blog => {
+    return { title:i_blog.title, author:i_blog.author, url:i_blog.url, likes:i_blog.likes }
+  })
+
+  expect(pure_blogs).toContainEqual(blog)
+
+})
+
+
 
 afterAll(() => {
   mongoose.connection.close()
