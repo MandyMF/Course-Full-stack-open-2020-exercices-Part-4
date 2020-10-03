@@ -20,7 +20,7 @@ beforeEach(async () => {
   await Promise.all(blogPromises)
 })
 
-test.only('Returns correct amount of blogs in json format', async () => {
+test('Returns correct amount of blogs in json format', async () => {
   await api.get('/api/blogs')
     .expect(200)
     .expect('Content-Type', /application\/json/)
@@ -28,6 +28,15 @@ test.only('Returns correct amount of blogs in json format', async () => {
   const blogsDb = await helper.blogsInDb()
   expect(blogsDb).toHaveLength(helper.initialBlogs.length)
 })
+
+test('Blog post identifier property is named id and exist for every blog', async () => {
+  const blogsDb = await helper.blogsInDb()
+
+  blogsDb.forEach(blog => {
+    expect(blog.id).toBeDefined()
+  })
+})
+
 
 afterAll(() => {
   mongoose.connection.close()
