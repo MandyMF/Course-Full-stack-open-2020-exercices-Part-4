@@ -14,6 +14,12 @@ const unknownEndpoint = (request, response) => {
 
 const errorHandler = (error, request, response, next) => {
   logger.error(error.message)
+
+  if(error.name==='ValidationError' && error._message ==='User validation failed'){
+    response.status(400).send({
+      error: error.message
+    })
+  }
   next(error)
 }
 
