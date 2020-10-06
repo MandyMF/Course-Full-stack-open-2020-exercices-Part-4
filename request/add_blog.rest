@@ -1,8 +1,9 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlY29uZG9uZTIiLCJpZCI6IjVmN2MyMzljNGI1MTVlMDk0ODEzM2YxMyIsImlhdCI6MTYwMTk3MzUzN30.ZFJSKQRXF5oLZmeXExZaehgV5NGSn8X0wGWe-juj7PY
 
 {
-  "title":"Test Note6",
+  "title":"Test Note7",
   "author":"random guy",
   "url":"none-one",
   "likes": 5
